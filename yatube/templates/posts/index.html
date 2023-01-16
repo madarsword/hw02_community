@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block title %} Последние обновления на сайте {% endblock %}
 {% block content %}
-{% for post in posts %}
+  <h1>{{ group.title }}</h1>
+  {% for post in posts %}
     <ul>
       <li>
         Автор: {{ post.author.get_full_name }}
@@ -10,12 +11,12 @@
         Дата публикации: {{ post.pub_date|date:"d E Y" }}
       </li>
     </ul>      
-    <p>{{ post.text }}</p>
+    <p>{{ post.text|linebreaksbr }}</p>
     {% if post.group %}   
-    <a href="{% url 'posts:group_list' post.group.slug %}">
-      Все записи группы
-    </a>
+      <a href="{% url 'posts:group_list' post.group.slug %}">
+        Все записи группы
+      </a>
     {% endif %} 
-{% if not forloop.last %}<hr>{% endif %}
-{% endfor %}
+  {% if not forloop.last %}<hr>{% endif %}
+  {% endfor %}
 {% endblock %}
