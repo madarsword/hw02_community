@@ -2,7 +2,7 @@
 {% block title %} Записи сообщества {{ group.title }} {% endblock %}
 {% block content %}
   <h1>{{ group.title }}</h1>
-  {{ group.description }}
+  <p>{{ group.description }}</p>
   {% for post in posts %}
     <article>
       <ul>
@@ -15,6 +15,6 @@
       </ul>      
       <p>{{ post.text|linebreaksbr }}</p>         
     </article>
-  {% if not forloop.last %}<hr>{% endif %}
+    {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}
 {% endblock %}
